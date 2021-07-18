@@ -6,4 +6,21 @@ const server = express();
 // Build your projects router in /api/projects/projects-router.js
 // Do NOT `server.listen()` inside this file!
 
+const helmet = require('helmet');
+const morgan = require('morgan');
+
+// Routers
+const actRouter = require('./actions/actions-router');
+const projRouter = require('./projects/projects-router');
+
+server.use(express.json());
+server.use(helmet());
+server.use(morgan('dev'));
+server.use('/api/actions', actRouter);
+server.use('/api/projects', projRouter);
+
+server.get('/', (req, res) => {
+  res.send(`<h1>Here is my API</h1>`);
+});
+
 module.exports = server;
