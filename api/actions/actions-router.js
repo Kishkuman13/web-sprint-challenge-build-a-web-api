@@ -16,8 +16,8 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-  const { id } = req.params.id;
-  Actions.get(req.params.id)
+  const { id } = req.params;
+  Actions.get(id)
     .then((action) => {
       if (action) {
         res.status(200).json(action);
@@ -44,11 +44,11 @@ router.post('/', validateAct, async (req, res) => {
 });
 
 router.put('/:id', validateAct, async (req, res) => {
-  const { id } = req.params.id;
+  const { id } = req.params;
   const action = req.body;
 
   try {
-    const updatedAct = await Actions.update(req.params.id, action);
+    const updatedAct = await Actions.update(id, action);
     res.status(200).json(updatedAct);
   } catch (err) {
     console.log(err);
@@ -57,8 +57,8 @@ router.put('/:id', validateAct, async (req, res) => {
 });
 
 router.delete('/:id', (req, res) => {
-  const { id } = req.params.id;
-  Actions.remove(req.params.id)
+  const { id } = req.params;
+  Actions.remove(id)
     .then((count) => {
       if (count > 0) {
         res.status(200).json({ message: 'Action deleted' });

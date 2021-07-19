@@ -48,9 +48,9 @@ router.put('/:id', validateProj, async (req, res) => {
   const changes = req.body;
 
   try {
-    const updateProj = await Projects.update(id, changes);
+    const updatedProj = await Projects.update(id, changes);
     if (project) {
-      res.status(200).json(updateProj);
+      res.status(200).json(updatedProj);
     } else {
       res.status(404).json({ message: `Project id ${id} could not be found` });
     }
