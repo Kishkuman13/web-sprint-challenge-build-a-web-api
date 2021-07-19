@@ -43,7 +43,7 @@ router.post('/', validateProj, async (req, res) => {
   }
 });
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', validateProj, async (req, res) => {
   const { id } = req.params;
   const project = req.body;
 
