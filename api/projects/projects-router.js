@@ -45,10 +45,10 @@ router.post('/', validateProj, async (req, res) => {
 
 router.put('/:id', validateProj, async (req, res) => {
   const { id } = req.params;
-  const project = req.body;
+  const changes = req.body;
 
   try {
-    const updateProj = await Projects.update(id, project);
+    const updateProj = await Projects.update(id, changes);
     if (project) {
       res.status(200).json(updateProj);
     } else {
