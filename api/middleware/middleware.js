@@ -22,7 +22,7 @@ function validateAct(req, res, next) {
 };
 
 function validateProj(req, res, next) {
-  if (!req.body.name || !req.body.description) {
+  if (!req.body.name || !req.body.description || req.body.completed) {
 		next({
 			...Error(),
 			status: 400,
