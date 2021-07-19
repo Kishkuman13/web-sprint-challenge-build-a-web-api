@@ -10,7 +10,7 @@ async function validateAct(req, res, next) {
 			status: 400,
       message: 'Action notes, description and related project id are required!'
 		}); 
-	} else if (req.body && Object.keys(req.body).length > 0) {
+	} else if (req.body || Object.keys(req.body).length > 0) {
 		next();
 	} else {
 		next({ 
