@@ -3,14 +3,14 @@ function logger(req, res, next) {
   next();
 }
 
-async function validateAct(req, res, next) {
+function validateAct(req, res, next) {
   if ( !req.body.description || !req.body.project_id || !req.body.notes ) {
 		next({
 			...Error(),
 			status: 400,
       message: 'Action notes, description and related project id are required!'
 		}); 
-	} else if (req.body || Object.keys(req.body).length > 0) {
+	} else if (req.body && Object.keys(req.body).length > 0) {
 		next();
 	} else {
 		next({ 
@@ -21,14 +21,14 @@ async function validateAct(req, res, next) {
 	}
 };
 
-async function validateProj(req, res, next) {
+function validateProj(req, res, next) {
   if (!req.body.name || !res.body.description) {
 		next({
 			...Error(),
 			status: 400,
 			message: 'A project name and description are required!'
 		});
-	} else if (req.body || Object.keys(req.body).length > 0) {
+	} else if (req.body && Object.keys(req.body).length > 0) {
       next();
 	} else {
 		next({ 
