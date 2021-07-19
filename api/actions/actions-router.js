@@ -48,7 +48,7 @@ router.put('/:id', validateAct, async (req, res) => {
   const action = req.body;
 
   try {
-    const updatedAct = await Actions.update(id, action);
+    const updatedAct = await Actions.update(req.params.id, action);
     res.status(200).json(updatedAct);
   } catch (err) {
     console.log(err);
@@ -58,7 +58,7 @@ router.put('/:id', validateAct, async (req, res) => {
 
 router.delete('/:id', (req, res) => {
   const { id } = req.params.id;
-  Actions.remove(id)
+  Actions.remove(req.params.id)
     .then((count) => {
       if (count > 0) {
         res.status(200).json({ message: 'Action deleted' });
